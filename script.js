@@ -5,13 +5,13 @@ const copyButton = document.getElementById("copy-address");
 const note = document.getElementById("address-note");
 const toast = document.getElementById("toast");
 
-if (address) {
+if (address && addressElement && copyButton && note) {
   addressElement.textContent = address;
   copyButton.disabled = false;
   note.textContent = "Klikkaa Kopioi ja liitä osoite Minecraftin palvelinvalikkoon.";
 }
 
-copyButton.addEventListener("click", async () => {
+copyButton?.addEventListener("click", async () => {
   if (!address) return;
   try {
     await navigator.clipboard.writeText(address);
@@ -19,8 +19,11 @@ copyButton.addEventListener("click", async () => {
   } catch {
     toast.textContent = `Palvelimen osoite: ${address}`;
   }
-  toast.classList.add("visible");
-  window.setTimeout(() => toast.classList.remove("visible"), 2400);
+  if (toast) {
+    toast.classList.add("visible");
+    window.setTimeout(() => toast.classList.remove("visible"), 2400);
+  }
 });
 
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearElement = document.getElementById("year");
+if (yearElement) yearElement.textContent = new Date().getFullYear();

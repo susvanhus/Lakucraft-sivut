@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10120f">
+  <meta name="description" content="Näin liityt LakuCraftin Minecraft-palvelimelle.">
+  <title>Miten liityn — LakuCraft</title>
+  <link rel="icon" type="image/png" href="assets/server-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="inner-page">
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="LakuCraft etusivu">
+      <img src="assets/server-icon.png" alt="" width="42" height="42">
+      <span>LAKU<span class="brand-light">CRAFT</span></span>
+    </a>
+    <nav aria-label="Päänavigaatio">
+      <a href="index.html">Koti</a>
+      <a href="saannot.html">Säännöt</a>
+      <a class="nav-discord" href="https://discord.gg/cD8DBC7NC" target="_blank" rel="noopener noreferrer">Discord <span aria-hidden="true">↗</span></a>
+      <a href="liity.html" aria-current="page"><span class="nav-label-desktop">Miten liityn</span><span class="nav-label-mobile">Miten liityn</span></a>
+    </nav>
+  </header>
+
+  <main class="standalone-page join-page">
+    <section class="join-section">
+      <div class="join-intro">
+        <p class="eyebrow eyebrow-dark">ALOITA TÄSTÄ</p>
+        <h1 class="page-title">Miten liityn Minecraft-servulle?</h1>
+        <p>Lisää LakuCraft palvelin Minecraftin moninpelivalikkoon ja liity pelaamaan.</p>
+      </div>
+      <div class="server-card">
+        <div class="server-card-top">
+          <div class="server-identity">
+            <img src="assets/server-icon.png" alt="LakuCraft-kuvake" width="56" height="56">
+            <div><strong>LakuCraft</strong><span>Minecraft-palvelin</span></div>
+          </div>
+          <span class="status-pill"><i></i> LakuCraft</span>
+        </div>
+        <div class="address-label">PALVELIMEN OSOITE</div>
+        <div class="address-row">
+          <code id="server-address">Ladataan osoitetta…</code>
+          <button id="copy-address" type="button" disabled aria-label="Kopioi palvelimen osoite">Kopioi</button>
+        </div>
+        <p class="address-note" id="address-note">Ladataan palvelimen osoitetta.</p>
+      </div>
+    </section>
+
+    <section class="steps-section standalone-steps">
+      <div class="section-heading">
+        <p class="eyebrow eyebrow-dark">KOLME VAIHETTA</p>
+        <h2>Nähdään pelissä.</h2>
+      </div>
+      <div class="steps-grid">
+        <article class="step-card"><span class="step-number">01</span><div class="step-icon" aria-hidden="true">▣</div><h3>Avaa Minecraft</h3><p>Käynnistä Minecraft ja avaa moninpelivalikko.</p></article>
+        <article class="step-card"><span class="step-number">02</span><div class="step-icon" aria-hidden="true">＋</div><h3>Lisää palvelin</h3><p>Valitse palvelimen lisääminen ja anna sille nimeksi LakuCraft.</p></article>
+        <article class="step-card"><span class="step-number">03</span><div class="step-icon" aria-hidden="true">↗</div><h3>Yhdistä</h3><p>Kopioi yllä näkyvä osoite palvelimen osoitekenttään ja yhdistä.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer><a class="footer-brand" href="index.html">LAKUCRAFT</a><span>Minecraft-yhteisö, jossa seikkailut syntyvät yhdessä.</span><span>© <span id="year"></span> LakuCraft</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
