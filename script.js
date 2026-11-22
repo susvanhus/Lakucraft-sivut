@@ -10,6 +10,7 @@ const statusBadge = document.getElementById("server-status-badge");
 const statusText = document.getElementById("server-status-text");
 const playerCount = document.getElementById("player-count");
 const serverVersion = document.getElementById("server-version");
+if (serverVersion) serverVersion.textContent = config.recommendedMinecraftVersion || "1.21.11+";
 
 async function loadServerStatus() {
   if (!statusPill || !address) return;
@@ -28,14 +29,12 @@ async function loadServerStatus() {
       const maximum = data.players?.max;
       playerCount.textContent = maximum == null ? `${current}` : `${current} / ${maximum}`;
     }
-    if (serverVersion) serverVersion.textContent = online ? (data.version || "Ei ilmoitettu") : "Ei saatavilla";
   } catch {
     statusPill.classList.remove("status-checking");
     statusPill.classList.add("status-offline");
     if (statusBadge) statusBadge.textContent = "Ei saatavilla";
     if (statusText) statusText.textContent = "Tilaa ei voitu tarkistaa";
     if (playerCount) playerCount.textContent = "—";
-    if (serverVersion) serverVersion.textContent = "—";
   }
 }
 
