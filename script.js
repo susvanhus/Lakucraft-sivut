@@ -5,6 +5,42 @@ const copyButton = document.getElementById("copy-address");
 const note = document.getElementById("address-note");
 const toast = document.getElementById("toast");
 
+const statusPill = document.getElementById("server-status");
+const statusBadge = document.getElementById("server-status-badge");
+const statusText = document.getElementById("server-status-text");
+const playerCount = document.getElementById("player-count");
+const serverVersion = document.getElementById("server-version");
+
+async function loadServerStatus() {
+  if (!statusPill || !address) return;
+  try {
+    const response = await fetch(`https://api.mcsrvstat.us/3/${encodeURIComponent(address)}`);
+    if (!response.ok) throw new Error("Statuspalvelu ei vastannut.");
+    const data = await response.json();
+    const online = data.online === true;
+    statusPill.classList.toggle("status-online", online);
+    statusPill.classList.toggle("status-offline", !online);
+    statusPill.classList.remove("status-checking");
+    if (statusBadge) statusBadge.textContent = online ? "Online" : "Offline";
+    if (statusText) statusText.textContent = online ? "Toiminnassa" : "Ei tavoitettavissa";
+    if (playerCount) {
+      const current = Number(data.players?.online ?? 0);
+      const maximum = data.players?.max;
+      playerCount.textContent = maximum == null ? `${current}` : `${current} / ${maximum}`;
+    }
+    if (serverVersion) serverVersion.textContent = online ? (data.version || "Ei ilmoitettu") : "Ei saatavilla";
+  } catch {
+    statusPill.classList.remove("status-checking");
+    statusPill.classList.add("status-offline");
+    if (statusBadge) statusBadge.textContent = "Ei saatavilla";
+    if (statusText) statusText.textContent = "Tilaa ei voitu tarkistaa";
+    if (playerCount) playerCount.textContent = "—";
+    if (serverVersion) serverVersion.textContent = "—";
+  }
+}
+
+loadServerStatus();
+
 if (address && addressElement && copyButton && note) {
   addressElement.textContent = address;
   copyButton.disabled = false;
